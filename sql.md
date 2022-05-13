@@ -85,7 +85,7 @@ select count(*) from table where name='test';
 
 要执行这个查询，Spark 1.x会使用一种最流行、最经典的查询求值策略，也就是：`Volcano Iterator Model`。如下图：
 
-![spark_catalyst_2](images/spark_catalyst_2.jpeg)
+![spark_catalyst_2](images/spark_catalyst_2.png)
 
 在这种模型中，一个查询会包含多个operator，每个operator都会实现一个接口，提供一个next()方法，该方法返回operator tree中的下一个operator。
 
@@ -227,21 +227,6 @@ object MyParserApp {
     spark.sql("select * from values(1,'1')").show()
   }
 }
-```
-
-2. 扩展优化器
-
-
-
-3. 扩展策略
-
-SparkStrategies包含了一系列特定的Strategies，这些Strategies是继承自QueryPlanner中定义的Strategy，
-它定义接受一个Logical Plan，生成一系列的Physical Plan。
-
-通过Strategies把逻辑计划转换成可以具体执行的物理计划，代码如下：
-
-```scala
-
 ```
 
 后续：
